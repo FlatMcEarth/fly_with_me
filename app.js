@@ -8,6 +8,15 @@ app.engine('handlebars',handlebars.engine);
 app.set('view engine','handlebars');
 
 app.use(express.static(__dirname+'/public'));
+
+app.get("/", function(req, res){
+    res.render('start');
+});
+
+app.get('/game',function(req,res){
+    res.render('game');
+});
+
 //404 page
 app.use(function(req, res, next){
     res.status(404);
