@@ -55,10 +55,12 @@ function gameLoop(delta){
 
     window.addEventListener("mouseup",function(){
         end = true;
+        dt = 0;
     });
     
     window.addEventListener("touchend",function(){
         end = true;
+        dt = 0;
     });
     if(end){
         end_game(delta);
