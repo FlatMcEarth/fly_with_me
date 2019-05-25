@@ -17,6 +17,10 @@ app.get('/game',function(req,res){
     res.render('game');
 });
 
+app.get('/end', function(req,res){
+    res.render('end');
+})
+
 //404 page
 app.use(function(req, res, next){
     res.status(404);

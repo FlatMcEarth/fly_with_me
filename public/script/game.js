@@ -40,17 +40,59 @@ function setup(){
     app.ticker.add(delta => gameLoop(delta));
 }
 
+time = 0;
+dt = 0;
+end = false;
+
 function gameLoop(delta){
-    state(delta);
+    window.addEventListener("mousedown",function(){
+        dt = 1;
+    });
+    
+    window.addEventListener("touchstart",function(){
+        dt = 1;
+    });
+
+    window.addEventListener("mouseup",function(){
+        end = true;
+    });
+    
+    window.addEventListener("touchend",function(){
+        end = true;
+    });
+    if(end){
+        end_game(delta);
+    }
+    else{
+        play(delta);
+    }
 }
 
-time = 0;
-dt = 1;
+function end_game(delta){
+    if(space_ship.y > -150){
+        //moving space_ship
+        space_ship.y -= 0.8*height/90;
+        //moving stars
+        for(var i = 0; i<12; i++){
+            if(stars[i].y>height){
+                stars[i].y = 0;
+                stars[i].x = Math.random()*width;
+            }
+            else{
+                stars[i].y += height/180;
+            }
+        }
+    }
+    else{
+        window.location.replace("end");
+    }
+
+}
 
 function play(delta){
     //initial movement of the space ship
-    if(space_ship.y > 0.618*height){
-        space_ship.y -= (1-0.618)*height/90;
+    if(space_ship.y > 0.8*height){
+        space_ship.y -= (1-0.8)*height/90;
     }
     //moving stars
     for(var i = 0; i<12; i++){
@@ -66,5 +108,4 @@ function play(delta){
     time += dt;
     message.text = Math.floor(time/60)+"s";
 }
-
 document.body.appendChild(app.view);
