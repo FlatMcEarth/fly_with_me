@@ -17,11 +17,12 @@ app.get('/game',function(req,res){
     res.render('game');
 });
 
-var time;
+app.use(require('body-parser')());
 
-app.get('/end', function(req,res){
-    time = req.query.time;
-    res.render('end',{time: time});
+app.post('/end', function(req, res){
+    var time = req.body.time;
+    console.log("time");
+    res.render("end",{time: time});
 });
 
 //404 page

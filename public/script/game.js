@@ -112,7 +112,9 @@ function end_game(delta){
     }
     else if(next_req){
         next_req = false;
-        window.location.replace("end?time="+Math.floor(time/60));
+        document.getElementById("time-value").value = Math.floor(time/60);
+        console.log("time");
+        document.getElementById("data-form").submit();
         
     }
 
