@@ -17,9 +17,12 @@ app.get('/game',function(req,res){
     res.render('game');
 });
 
+var time;
+
 app.get('/end', function(req,res){
-    res.render('end');
-})
+    time = req.query.time;
+    res.render('end',{time: time});
+});
 
 //404 page
 app.use(function(req, res, next){

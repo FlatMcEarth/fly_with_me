@@ -1,11 +1,17 @@
 <div id = start>
-    <h1 id = 'fly'>Journey Over</h1>
+    <h1 id = 'fly'>You flew {{time}}s with me</h1>
     <button id="start-button" class="button">START AGAIN</button>
+    <button id="ranking-button" class="button">SEE RANKING</button>
     <script>
     x = document.getElementById("start-button");
     x.addEventListener("click", function(){
         window.location.assign("game");
     });
+    y = document.getElementById("ranking-button");
+    y.addEventListener("click", function(){
+        window.location.assign("ranking");
+    });
+
 
     </script>
 </div>

@@ -19,14 +19,14 @@ PIXI.loader
 function setup(){
     space_ship = new PIXI.Sprite(PIXI.loader.resources['img/space_ship.png'].texture);
     stars = [];
-    //initial stars
+    //initialize stars
     for(var i = 0; i<12; i++){
         stars[i] = new PIXI.Sprite(PIXI.loader.resources['img/star.png'].texture);
         stars[i].x = Math.random()*width;
         stars[i].y = Math.random()*height;
         app.stage.addChild(stars[i]);
     }
-    //initial space ship
+    //initialize space ship
     space_ship.x = 0.45*width;
     space_ship.y = height;
     app.stage.addChild(space_ship);
@@ -40,10 +40,10 @@ function setup(){
     app.ticker.add(delta => gameLoop(delta));
 }
 
-time = 0;
-dt = 0;
-end = false;
-enter = false;
+let time = 0;
+let dt = 0;
+let end = false;
+let enter = false;
 
 function gameLoop(delta){
     window.addEventListener("mousedown",function(){
@@ -94,6 +94,7 @@ function play(delta){
     message.text = Math.floor(time/60)+"s";
 }
 
+let next_req =true;
 function end_game(delta){
     if(space_ship.y > -150){
         //moving space_ship
@@ -109,8 +110,10 @@ function end_game(delta){
             }
         }
     }
-    else{
-        window.location.replace("end");
+    else if(next_req){
+        next_req = false;
+        window.location.replace("end?time="+Math.floor(time/60));
+        
     }
 
 }
