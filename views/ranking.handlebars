@@ -1,6 +1,8 @@
-<div id = "start">
-    <h1 id = 'fly'>Fly With Me</h1>
-    <button id="start-button" class="button">START</button>
+<div id="rankings">
+{{#each ranking}}
+<h2 class= "rank">No.{{ranking}} {{name}} {{time}}s</h2>
+{{/each}}
+<button id="start-button" class="button">BACK</button>
     <script>
     x = document.getElementById("start-button");
     x.addEventListener("click", function(){
@@ -8,4 +10,3 @@
     });
     </script>
 </div>
-

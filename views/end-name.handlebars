@@ -1,0 +1,13 @@
+<h1 id="fly">Please Enter Your Name</h1>
+<form action="/rank_process" id = "rank-form" method="POST">
+    <input type="hidden" name="time" id="time-value">
+    <input type="hidden" name="played" id="played">
+    <input type="text" name="name" class="input">
+    <input type="submit" class="button">SUBMIT</input>
+</form>
+<script>
+    var time = {{time}};
+    document.getElementById("time-value").value = time;
+    document.getElementById("played").value = localStorage.getItem("played");
+    window.localStorage.setItem('played', false);
+</script>

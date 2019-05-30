@@ -112,10 +112,9 @@ function end_game(delta){
     }
     else if(next_req){
         next_req = false;
+        window.localStorage.setItem('played', true);
         document.getElementById("time-value").value = Math.floor(time/60);
-        console.log("time");
         document.getElementById("data-form").submit();
-        
     }
 
 }

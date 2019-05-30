@@ -19,11 +19,42 @@ app.get('/game',function(req,res){
 
 app.use(require('body-parser')());
 
+//initial ranking
+var ranking = [];
+for(var i = 0; i<10; i++){
+    ranking[i] = {
+        ranking: i+1,
+        name: "Flyer",
+        time: 0
+    };
+}
+
 app.post('/end', function(req, res){
     var time = req.body.time;
-    console.log("time");
-    res.render("end",{time: time});
+    if(time>ranking[9].time){
+        res.render("end-name",{time: time});
+    }
+    else{
+        res.render("end",{time: time});
+    }
 });
+var util = require("./util");
+
+app.post('/rank_process',function(req,res){
+    var item = {
+        ranking: 0,
+        name: req.body.name,
+        time: parseInt(req.body.time)
+    };
+    if(req.body.played=="true"){
+        util.ranking_insert(ranking,item);
+    }
+    res.redirect(303,"/ranking");
+});
+
+app.get("/ranking", function(req,res){
+    res.render("ranking",{ranking: ranking});
+})
 
 //404 page
 app.use(function(req, res, next){
